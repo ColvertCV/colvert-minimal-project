@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     cors_expose_headers: List[str] = Field(default=["*"])
     cors_max_age: int = Field(default=3600)
 
+    # Supabase settings
+    supabase_url: str = Field(default="https://localhost:54321")
+    supabase_service_role_key: str = Field(default="")
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_prefix="APP_",

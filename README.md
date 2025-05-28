@@ -21,6 +21,12 @@ Poetry stores the credentials in: ~/.config/pypoetry/config.toml
 
 ## Usage
 
+
+To execute:
+poetry run main 
+
+
+
 ## Environment Vars
 
 general basic project:
