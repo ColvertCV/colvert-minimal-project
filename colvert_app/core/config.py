@@ -21,7 +21,9 @@ class Settings(BaseSettings):
     # Supabase settings
     supabase_url: str = Field(default="https://localhost:54321")
     supabase_service_role_key: str = Field(default="")
-
+    supabase_jwt_algorithm: str = Field(default="HS256")
+    supabase_secret: str = Field(default="")
+    
     model_config = SettingsConfigDict(
         env_file=".env",
         env_prefix="APP_",
