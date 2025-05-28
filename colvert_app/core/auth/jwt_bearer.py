@@ -24,7 +24,17 @@ class JWTBearer(HTTPBearer):
         try:
             decoded_token = jwt.decode(jwtoken, settings.supabase_secret, audience="authenticated", algorithms=[settings.supabase_jwt_algorithm], options={"verify_exp": True})
             print(decoded_token)
+            
+            # Verify required fields
+            if 'user_role' not in decoded_token:
+                raise HTTPException(status_code=403, detail="Missing user_role in token")
+            if 'sub' not in decoded_token:
+                raise HTTPException(status_code=403, detail="Missing sub in token")
+                
             return decoded_token
+        except HTTPException as he:
+            # Re-raise HTTP exceptions
+            raise he
         except Exception as e:
             print(e)
             return {}
